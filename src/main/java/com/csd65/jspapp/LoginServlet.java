@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.csd65.jspapp.config.DbConfiguration;
+
 public class LoginServlet extends HttpServlet{
 	
 	@Override
@@ -23,12 +25,7 @@ public class LoginServlet extends HttpServlet{
 		
 		
 		try {
-			//Set up MySQL Driver.
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			//Database URL
-			String dbURL = "jdbc:mysql://localhost:3306/postsdb";
-			Connection conn = DriverManager.getConnection(dbURL, "root", "mysql");
-			
+			Connection conn = DbConfiguration.getDatabaseConnection();
 			//Preparing the query
 			String sql = "SELECT * FROM tbl_user WHERE email=? AND password=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);

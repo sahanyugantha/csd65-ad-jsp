@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>CSD 65</title>
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -30,8 +31,11 @@
 		        	<a class="nav-link" href="#"><% out.print(session.getAttribute("u_username").toString()); %></a>
 	      		</li>
 			
-			<% } 
-		%>
+			<% } else { %>
+				<li class="nav-item" style="position: absolute;right: 20px;">
+		        	<a class="nav-link" href="login.jsp">Login</a>
+	      		</li>
+      		<% } %>
      </ul>
      
   </div>
