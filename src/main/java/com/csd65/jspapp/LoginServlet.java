@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet{
 				
 				session.setAttribute("u_id", rs.getInt("id"));
 				session.setAttribute("u_email", rs.getString("email"));
+				session.setAttribute("u_pass", rs.getString("password"));
 				session.setAttribute("u_username", rs.getString("username"));
 				session.setAttribute("u_role", rs.getString("role"));
 				session.setAttribute("logged_in", true);

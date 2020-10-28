@@ -11,7 +11,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">CSD65</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,16 +23,34 @@
       	<% 	
       		if(session.getAttribute("logged_in") != null &&	(Boolean)session.getAttribute("logged_in") == true){ %>
 				
-			 	<li class="nav-item" style="position: absolute;right: 20px;">
+			 <%-- 	<li class="nav-item" style="position: absolute;right: 20px;">
 		        	<a class="nav-link" href="logout.jsp">Logout</a>
 	      		</li>
 	      		
 	      		<li class="nav-item" style="position: absolute;right: 100px;">
 		        	<a class="nav-link" href="#"><% out.print(session.getAttribute("u_username").toString()); %></a>
 	      		</li>
+	      		 --%>
+	      		<div class="d-flex" style="position: absolute;right: 20px;">
+				  <div class="btn-group">
+				    <button type="button" class="btn btn-secondary"><% out.print(session.getAttribute("u_username").toString()); %></button>
+				    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+				      <span class="sr-only"></span>
+				    </button>
+				    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+				      <a class="dropdown-item" href="edituser.jsp">Edit profile</a>
+				      <a class="dropdown-item" href="#">Settings</a>
+				      <div class="dropdown-divider"></div>
+				      <a class="dropdown-item" href="logout.jsp">Logout</a>
+				    </div>
+				  </div>
+				</div>
 			
 			<% } else { %>
-				<li class="nav-item" style="position: absolute;right: 20px;">
+				<li class="nav-item" style="position: absolute;right: 80px;">
+		        	<a class="nav-link" href="register.jsp">Signup</a>
+	      		</li>
+	      		<li class="nav-item" style="position: absolute;right: 20px;">
 		        	<a class="nav-link" href="login.jsp">Login</a>
 	      		</li>
       		<% } %>
