@@ -9,6 +9,31 @@
 	<div  class="row">
 		<div  class="col-sm-10 offset-sm-1">
 		
+				
+				<%
+					String demoCookie = "NA";
+					
+					Cookie[] cookies = request.getCookies();
+					
+					for(int i=0; i < cookies.length; i++ ){
+						
+						//This is just for testing.
+						//out.print("Name : "+cookies[i].getName()+ " value : "+cookies[i].getValue()+"<br/>");
+						
+						
+						if(cookies[i].getName().equals("sample")){
+							demoCookie = cookies[i].getValue();
+						}
+						
+					}
+				
+				
+				%>
+				<div class="alert alert-success" role="alert">
+				
+				  Cookie demo : <% out.print(demoCookie); %>
+				</div>
+		
 			<% if(session.getAttribute("logged_in") != null &&
 					(Boolean)session.getAttribute("logged_in") == true){%>
 				

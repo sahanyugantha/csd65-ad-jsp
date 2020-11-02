@@ -36,6 +36,6 @@
   	<servlet-name>edituser</servlet-name>
   	<url-pattern>/edituser</url-pattern>
   </servlet-mapping>
-  
+ 
  		
 </web-app>
