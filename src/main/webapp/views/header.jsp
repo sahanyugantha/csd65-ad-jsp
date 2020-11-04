@@ -7,6 +7,35 @@
 <title>CSD 65</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
+
+	 
+	      		 <%
+					String themeCookie = "Light";
+					Cookie[] cookies = request.getCookies();
+					
+					for(int i=0; i < cookies.length; i++ ){
+						
+						if(cookies[i].getName().equals("theme")){
+							themeCookie = cookies[i].getValue();
+						}
+						
+					}
+					
+
+					System.out.println("Cookie-theme ----> "+themeCookie);
+					
+					if (themeCookie.equals("Dark")){
+						%>
+							<style>
+								body {
+									background-color : #868686;
+								}
+							</style>
+						<% 
+					}
+				%>
+
+
 </head>
 <body>
 
@@ -22,15 +51,7 @@
       </li>
       	<% 	
       		if(session.getAttribute("logged_in") != null &&	(Boolean)session.getAttribute("logged_in") == true){ %>
-				
-			 <%-- 	<li class="nav-item" style="position: absolute;right: 20px;">
-		        	<a class="nav-link" href="logout.jsp">Logout</a>
-	      		</li>
-	      		
-	      		<li class="nav-item" style="position: absolute;right: 100px;">
-		        	<a class="nav-link" href="#"><% out.print(session.getAttribute("u_username").toString()); %></a>
-	      		</li>
-	      		 --%>
+	      					
 	      		<div class="d-flex" style="position: absolute;right: 20px;">
 				  <div class="btn-group">
 				    <button type="button" class="btn btn-secondary"><% out.print(session.getAttribute("u_username").toString()); %></button>
@@ -39,13 +60,13 @@
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
 				      <a class="dropdown-item" href="edituser.jsp">Edit profile</a>
-				      <a class="dropdown-item" href="#">Settings</a>
+				      <a class="dropdown-item" href="settings.jsp">Settings</a>
 				      <div class="dropdown-divider"></div>
 				      <a class="dropdown-item" href="logout.jsp">Logout</a>
 				    </div>
 				  </div>
 				</div>
-			
+				
 			<% } else { %>
 				<li class="nav-item" style="position: absolute;right: 80px;">
 		        	<a class="nav-link" href="register.jsp">Signup</a>

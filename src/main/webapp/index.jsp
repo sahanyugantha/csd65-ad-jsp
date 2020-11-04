@@ -29,10 +29,7 @@
 				
 				
 				%>
-				<div class="alert alert-success" role="alert">
 				
-				  Cookie demo : <% out.print(demoCookie); %>
-				</div>
 		
 			<% if(session.getAttribute("logged_in") != null &&
 					(Boolean)session.getAttribute("logged_in") == true){%>

@@ -20,6 +20,10 @@
   	<servlet-name>edituser</servlet-name>
   	<servlet-class>com.csd65.jspapp.UpdateuserServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>themechange</servlet-name>
+  	<servlet-class>com.csd65.jspapp.ThemeChangeServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>login</servlet-name>
   	<url-pattern>/auth</url-pattern>
@@ -36,6 +40,10 @@
   	<servlet-name>edituser</servlet-name>
   	<url-pattern>/edituser</url-pattern>
   </servlet-mapping>
- 
+  <servlet-mapping>
+  	<servlet-name>themechange</servlet-name>
+  	<url-pattern>/themeChange</url-pattern>
+  </servlet-mapping>
+ 	
  		
 </web-app>

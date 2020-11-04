@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import com.csd65.jspapp.config.DbConfiguration;
 
 public class LoginServlet extends HttpServlet{
@@ -23,6 +25,9 @@ public class LoginServlet extends HttpServlet{
 		String email = req.getParameter("u-email").toString();
 		String password = req.getParameter("u-pass").toString();
 		
+		//Encrypting the password with SHA-1
+		String encr_password = DigestUtils.sha1Hex(password);
+		
 		//Creating Cookies.
 		Cookie sample = new Cookie("sample", "yummy");
 		sample.setMaxAge(60*60); // two minutes.
@@ -34,8 +39,10 @@ public class LoginServlet extends HttpServlet{
 			//Preparing the query
 			String sql = "SELECT * FROM tbl_user WHERE email=? AND password=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
+			
 			stmt.setString(1, email);
-			stmt.setString(2, password);
+			stmt.setString(2, encr_password);
+			
 			
 			ResultSet rs = stmt.executeQuery();
 			
