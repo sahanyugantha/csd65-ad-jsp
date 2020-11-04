@@ -12,14 +12,12 @@
 				
 				<%
 					String demoCookie = "NA";
-					
 					Cookie[] cookies = request.getCookies();
 					
 					for(int i=0; i < cookies.length; i++ ){
 						
 						//This is just for testing.
 						//out.print("Name : "+cookies[i].getName()+ " value : "+cookies[i].getValue()+"<br/>");
-						
 						
 						if(cookies[i].getName().equals("sample")){
 							demoCookie = cookies[i].getValue();

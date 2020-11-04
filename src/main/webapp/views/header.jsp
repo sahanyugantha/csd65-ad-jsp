@@ -26,6 +26,7 @@
 					
 					if (themeCookie.equals("Dark")){
 						%>
+						
 							<style>
 								body {
 									background-color : #868686;
