@@ -17,10 +17,12 @@ import com.csd65.jspapp.config.DbConfiguration;
 
 public class LoginServlet extends HttpServlet{
 	
+	private HttpSession session = null; 
+	
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		HttpSession session = req.getSession();
+		session = req.getSession();
 		
 		String email = req.getParameter("u-email").toString();
 		String password = req.getParameter("u-pass").toString();
@@ -33,7 +35,26 @@ public class LoginServlet extends HttpServlet{
 		sample.setMaxAge(60*60); // two minutes.
 		res.addCookie(sample);
 		
+		int response = loginChecker(email, encr_password);
 		
+		if(response > 0) {
+			//Login Success.
+			res.sendRedirect("index.jsp");
+		} else if(response == 0) {
+			//Login Failed.
+			res.sendRedirect("login.jsp");
+		} else {
+			//Error.
+			res.sendRedirect("error.jsp");
+		}
+		
+		
+		
+	}
+	
+	
+	public int loginChecker(String email, String encr_password) {
+
 		try {
 			Connection conn = DbConfiguration.getDatabaseConnection();
 			//Preparing the query
@@ -51,41 +72,45 @@ public class LoginServlet extends HttpServlet{
 			while(rs.next()) {
 				rows++;
 				
-				session.setAttribute("u_id", rs.getInt("id"));
-				session.setAttribute("u_email", rs.getString("email"));
-				session.setAttribute("u_pass", rs.getString("password"));
-				session.setAttribute("u_username", rs.getString("username"));
-				session.setAttribute("u_role", rs.getString("role"));
-				session.setAttribute("logged_in", true);
+				if(session != null) {
+					session.setAttribute("u_id", rs.getInt("id"));
+					session.setAttribute("u_email", rs.getString("email"));
+					session.setAttribute("u_pass", rs.getString("password"));
+					session.setAttribute("u_username", rs.getString("username"));
+					session.setAttribute("u_role", rs.getString("role"));
+					session.setAttribute("logged_in", true);
+				}
 			}		
 			
 			
 			if(rows > 0) {
 								
 				//Successfully logged in
-				res.sendRedirect("index.jsp");
-				
-				
-				
+				return rows; //or we can return the 1.
+		
 			} else {
 				session.setAttribute("error", "Invalid email or password");
-				res.sendRedirect("error.jsp");
 			}
 			
 			//Close connection
 			conn.close();
-			
+			return 0;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			String errMsg = "ERROR : "+e.getMessage();
 			session.setAttribute("error", errMsg);
 			
-			res.sendRedirect("error.jsp");
+			return -1;
+			
 		}
-		
 	}
 	
+	
+	
+	
+	
+	//Sample method for test
 	public int addTwoNumbers(int num1, int num2) {
 		
 		int total = num1 + num2;
