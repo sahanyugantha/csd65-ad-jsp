@@ -76,6 +76,10 @@
 		        	<a class="nav-link" href="login.jsp">Login</a>
 	      		</li>
       		<% } %>
+      		
+      		<li class="nav-item" style="position: absolute;right: 150px;">
+	        	<a class="nav-link" href="upload-avatar.jsp">Upload avatar</a>
+      		</li>
      </ul>
      
   </div>
