@@ -40,6 +40,11 @@ public class UploadAvatarServlet extends HttpServlet{
 					
 					fileItem.write(avatarFile);
 					
+					
+					/**
+					 * Now you must perform UPDATE query for update the database record of user.
+					 */
+					
 				}
 				
 			}

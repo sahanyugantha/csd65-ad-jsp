@@ -38,7 +38,7 @@
 			
 				<%
 					Connection conn = DbConfiguration.getDatabaseConnection();
-					String sql = "SELECT * FROM tbl_post ORDER BY `id` desc";
+					String sql = "SELECT * FROM tbl_posts ORDER BY `id` desc";
 					PreparedStatement stmt = conn.prepareStatement(sql);
 					
 					ResultSet rs = stmt.executeQuery();
@@ -49,7 +49,7 @@
 						%>
 							<div class="card post-card">
 								<div class="card-header">
-								    <h5 class="card-title"><% out.print(rs.getString("title")); %></h5>
+								    <h5 class="card-title"><% out.print(rs.getString("author")); %></h5>
 									<small><% out.print(rs.getString("time")); %></small>
 								</div>
 								<div class="card-body">

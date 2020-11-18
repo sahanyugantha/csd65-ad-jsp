@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class DbConfiguration {
 	
 	private final static String driverClassName= "com.mysql.cj.jdbc.Driver";
-	private final static String databaseURL = "jdbc:mysql://localhost:3306/postsdb";
-	private final static String databaseUsername = "root";
+	private final static String databaseURL = "jdbc:mysql://192.168.64.2:3306/posts_db";
+	private final static String databaseUsername = "sahan";
 	private final static String databasePassword = "mysql";
 	
 	public static Connection getDatabaseConnection() throws ClassNotFoundException {
